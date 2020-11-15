@@ -1,17 +1,29 @@
 
-# Simulador simplificado de IRS
+# Simulador simplificado de IRS em Portugal
 
-## Build
+Simulador extremamente simplificado de IRS em Portugal. 
+
+**Não o considere como exato.** 
+
+Dependendo da situação serve apenas para ter uma noção do quanto deve pagar de IRS ou terá de restituição.
+
+# Build
+
+## Pre-requisito
+
+* Java JDK 1.8 ou superior
+* Maven 3
+
+## Comando
+
 `mvn clean package`
 
-## Como usar  
+# Como usar  
 
-### Preparar os ficheiros
+## Preparar os ficheiros
 
 * **mensal.csv** : arquivo CSV no formato a seguir, deve ter cerca de 12 linhas uma para cada mês do ano.
-
-    `valor_tributavel;retido_fonte;tsu_retido`
-
+ `valor_tributavel;retido_fonte;tsu_retido`
     
 Exemplo:
 
@@ -37,7 +49,7 @@ Exemplo:
     30;12.04;0.88  
     40;50;0.88
 
-### Correr o comando
+## Correr o comando
 
 `java -jar ./target/irs-simulator-1.0.0-SNAPHOST [Single, Married1, Married2] full_path_to_mensal_CSV full_path_to_rsusVested.csv`  
 
