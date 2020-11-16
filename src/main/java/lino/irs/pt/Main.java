@@ -39,10 +39,15 @@ public class Main {
 
     public static RSUVestList readRSUVestListFromCSV(String pathToCSV) throws Exception {
         RSUVestList rsuVestList = new RSUVestList();
+        if(pathToCSV == null) {
+            return rsuVestList;
+        }
+
         File file = new File(pathToCSV);
         if(!file.exists()){
             return rsuVestList;
         }
+
         BufferedReader buff = new BufferedReader(new FileReader(file));
         String line = buff.readLine();
         while(line != null) {
@@ -65,7 +70,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         SituationTypeEnum situationTypeEnum = SituationTypeEnum.valueOf(args[0]);
         String monthlyCsvFile = args[1];
-        String rsusCsvFile = args[2];
+        String rsusCsvFile = null;
+        if(args.length > 2) {
+            rsusCsvFile = args[2];
+        }
 
         MonthlyIncomeList monthlyIncomeList = readMonthlyIncomeListFromCSV(monthlyCsvFile);
         RSUVestList rsuVestList = readRSUVestListFromCSV(rsusCsvFile);
