@@ -26,6 +26,9 @@ public class Report {
         if(request.getSituationTypeEnum() == SituationTypeEnum.Married2) {
             deduction = Calculator.FIXED_DEDUCTION.multiply(new BigDecimal(2));
         }
+        else if(request.getSituationTypeEnum() == SituationTypeEnum.RNH) {
+            deduction = BigDecimal.ZERO;
+        }
 
         reportAsString +=
                 "\nValor bruto total recebido..:  "+ request.getTotalGross().setScale(2, BigDecimal.ROUND_HALF_UP) +

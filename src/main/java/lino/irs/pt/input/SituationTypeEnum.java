@@ -2,5 +2,5 @@ package lino.irs.pt.input;
 
 public enum SituationTypeEnum {
 
-    Single, Married1, Married2
+    Single, Married1, Married2, RNH
 }

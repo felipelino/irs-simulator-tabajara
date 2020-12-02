@@ -14,27 +14,34 @@ public class Calculator {
 
         BigDecimal referenceValue = null;
         BigDecimal amountSubjectToTax = null;
-        amountSubjectToTax = request.getTotalGross().subtract(FIXED_DEDUCTION);
-        if(request.isMarried()) {
-            if(request.getSituationTypeEnum() == SituationTypeEnum.Married2) {
-                amountSubjectToTax = amountSubjectToTax.subtract(FIXED_DEDUCTION);
-            }
-            referenceValue = amountSubjectToTax.divide(new BigDecimal(2));
+        BigDecimal totalIrs = null;
+        if(request.getSituationTypeEnum() == SituationTypeEnum.RNH) {
+            amountSubjectToTax = request.getTotalGross();
+            totalIrs = calculateIRSValue(amountSubjectToTax, true);
         }
         else {
-            referenceValue = amountSubjectToTax;
-        }
+            amountSubjectToTax = request.getTotalGross().subtract(FIXED_DEDUCTION);
+            if(request.isMarried()) {
+                if(request.getSituationTypeEnum() == SituationTypeEnum.Married2) {
+                    amountSubjectToTax = amountSubjectToTax.subtract(FIXED_DEDUCTION);
+                }
+                referenceValue = amountSubjectToTax.divide(new BigDecimal(2));
+            }
+            else {
+                referenceValue = amountSubjectToTax;
+            }
 
-        BigDecimal totalIrs = calculateIRSValue(referenceValue);
-        if(request.isMarried()) {
-            totalIrs = totalIrs.multiply(new BigDecimal(2));
+            totalIrs = calculateIRSValue(referenceValue, false);
+            if(request.isMarried()) {
+                totalIrs = totalIrs.multiply(new BigDecimal(2));
+            }
         }
 
         BigDecimal irsToPay = totalIrs.subtract(request.getTotalRetention());
         return new IRSSummary(amountSubjectToTax, totalIrs, irsToPay);
     }
 
-    private static BigDecimal calculateIRSValue(BigDecimal totalValue) {
+    private static BigDecimal calculateIRSValue(BigDecimal totalValue, boolean isRnh) {
 
         /*  totalValue = 35.000
 
@@ -65,6 +72,9 @@ public class Calculator {
 
             totalIrs = 9.933,165
          */
+        if(isRnh) {
+            return totalValue.multiply(new BigDecimal(0.20));
+        }
         BigDecimal referenceValue = totalValue;
         BigDecimal totalIrs = BigDecimal.ZERO;
         for (IRSRangeEnum range: IRSRangeEnum.values()) {

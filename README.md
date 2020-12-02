@@ -51,9 +51,12 @@ Exemplo:
 
 ## Correr o comando
 
-`java -jar ./target/irs-simulator-1.0.0-SNAPHOST [Single, Married1, Married2] full_path_to_mensal_CSV full_path_to_rsusVested.csv`  
+`java -jar ./target/irs-simulator-1.0.0-SNAPHOST [Single, Married1, Married2, RNH] full_path_to_mensal_CSV full_path_to_rsusVested.csv`  
 
-O primeiro parametro diz respeito se a simulação é para solteiro, casado em que apenas 1 trabalha, ou casado com os 2 a trabalhar.
+O primeiro parametro diz respeito se a simulação é para solteiro, casado em que apenas 1 trabalha, ou casado com os 2 a trabalhar, ou ainda RNH (Residente Não-Habitual).
+
+O regime de RNH aplica-se 20% de taxa de imposto dem deduções fixas.
+
 No caso de casado com os 2 a trabalhar o CSV deve conter os dados de ambos os conjuges.
 Exemplo: `java -jar ./target/irs-simulator-1.0.0-SNAPHOST "Single" "c:\temp\mensal.csv" "c:\temp\rsusVested.csv"`
 
