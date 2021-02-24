@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 public class Calculator {
 
     public static BigDecimal FIXED_DEDUCTION = new BigDecimal(4104);
+    public static BigDecimal FIXED_RNH_RATE = new BigDecimal(0.20);
 
     public static IRSSummary calculateIRS(IRSRequest request) {
 
@@ -37,8 +38,20 @@ public class Calculator {
             }
         }
 
+        BigDecimal profitStockShares = request.getTotalProfitStockShareBuyAndSellInEuro();
+        BigDecimal irsStockShares = calculateIRSValueForStockShares(profitStockShares);
+        totalIrs = totalIrs.add(irsStockShares);
         BigDecimal irsToPay = totalIrs.subtract(request.getTotalRetention());
-        return new IRSSummary(amountSubjectToTax, totalIrs, irsToPay);
+        return new IRSSummary(amountSubjectToTax, profitStockShares, totalIrs, irsToPay);
+    }
+
+    private static BigDecimal calculateIRSValueForStockShares(BigDecimal totalProfitStockShareBuyAndSellInEuro) {
+        if(totalProfitStockShareBuyAndSellInEuro.compareTo(BigDecimal.ZERO) > 0) {
+            return totalProfitStockShareBuyAndSellInEuro.multiply(new BigDecimal(0.28));
+        }
+        else {
+            return BigDecimal.ZERO;
+        }
     }
 
     private static BigDecimal calculateIRSValue(BigDecimal totalValue, boolean isRnh) {
@@ -73,7 +86,7 @@ public class Calculator {
             totalIrs = 9.933,165
          */
         if(isRnh) {
-            return totalValue.multiply(new BigDecimal(0.20));
+            return totalValue.multiply(FIXED_RNH_RATE);
         }
         BigDecimal referenceValue = totalValue;
         BigDecimal totalIrs = BigDecimal.ZERO;

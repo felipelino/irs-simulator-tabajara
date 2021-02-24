@@ -41,13 +41,13 @@ Exemplo:
     3000;657.00;0.00;DEC  
 
 *  **rsusVested.csv**: arquivo CSV no formato a seguir:
- `quantidade;valor_unit_dolar;cotacao_para_euro`
+ `quantidade;valor_unit_dolar;cotacao_para_euro;operacao(VEST|BUY|SELL|PREVIOUS)`
 
 Exemplo:
 
-    50;17.84;0.88  
-    30;12.04;0.88  
-    40;50;0.88
+    50;17.84;0.88;VEST  
+    30;12.04;0.88;PREVIOUS  
+    40;50;0.88;SELL
 
 ## Correr o comando
 

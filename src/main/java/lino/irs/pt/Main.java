@@ -1,9 +1,6 @@
 package lino.irs.pt;
 
-import lino.irs.pt.input.IRSRequest;
-import lino.irs.pt.input.MonthlyIncomeList;
-import lino.irs.pt.input.RSUVestList;
-import lino.irs.pt.input.SituationTypeEnum;
+import lino.irs.pt.input.*;
 import lino.irs.pt.output.IRSSummary;
 import lino.irs.pt.output.Report;
 import lino.irs.pt.service.Calculator;
@@ -37,15 +34,15 @@ public class Main {
         return monthlyIncomeList;
     }
 
-    public static RSUVestList readRSUVestListFromCSV(String pathToCSV) throws Exception {
-        RSUVestList rsuVestList = new RSUVestList();
+    public static StockShareList readStockShareListFromCSV(String pathToCSV) throws Exception {
+        StockShareList stockShareList = new StockShareList();
         if(pathToCSV == null) {
-            return rsuVestList;
+            return stockShareList;
         }
 
         File file = new File(pathToCSV);
         if(!file.exists()){
-            return rsuVestList;
+            return stockShareList;
         }
 
         BufferedReader buff = new BufferedReader(new FileReader(file));
@@ -53,10 +50,10 @@ public class Main {
         while(line != null) {
             String array[] = line.split(";");
             if(array.length < 3) {
-                throw new Exception("The expected format is: quantity;unitValue;toEuro");
+                throw new Exception("The expected format is: quantity;unitValue;toEuro;VEST|BUY|SELL");
             }
 
-            rsuVestList.add(Integer.parseInt(array[0]), new BigDecimal(array[1]), new BigDecimal(array[2]));
+            stockShareList.add(Integer.parseInt(array[0]), new BigDecimal(array[1]), new BigDecimal(array[2]), StockOperationTypeEnum.valueOf(array[3]));
             line = buff.readLine();
         }
 
@@ -64,21 +61,21 @@ public class Main {
             buff.close();
         }
 
-        return rsuVestList;
+        return stockShareList;
     }
 
     public static void main(String[] args) throws Exception {
         SituationTypeEnum situationTypeEnum = SituationTypeEnum.valueOf(args[0]);
         String monthlyCsvFile = args[1];
-        String rsusCsvFile = null;
+        String stockShareCsvFile = null;
         if(args.length > 2) {
-            rsusCsvFile = args[2];
+            stockShareCsvFile = args[2];
         }
 
         MonthlyIncomeList monthlyIncomeList = readMonthlyIncomeListFromCSV(monthlyCsvFile);
-        RSUVestList rsuVestList = readRSUVestListFromCSV(rsusCsvFile);
+        StockShareList stockShareList = readStockShareListFromCSV(stockShareCsvFile);
 
-        IRSRequest request = new IRSRequest(situationTypeEnum, monthlyIncomeList, rsuVestList);
+        IRSRequest request = new IRSRequest(situationTypeEnum, monthlyIncomeList, stockShareList);
         IRSSummary summary = Calculator.calculateIRS(request);
         Report report = new Report(request, summary);
         System.out.println(report);

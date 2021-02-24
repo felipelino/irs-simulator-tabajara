@@ -7,25 +7,30 @@ public class IRSRequest {
     private boolean isMarried = false;
     private SituationTypeEnum situationTypeEnum;
     private MonthlyIncomeList monthlyIncomeList;
-    private RSUVestList rsuVestList;
+    private StockShareList stockShareList;
 
-    public IRSRequest(SituationTypeEnum situationTypeEnum, MonthlyIncomeList monthlyIncomeList, RSUVestList rsuVestList) {
+    public IRSRequest(SituationTypeEnum situationTypeEnum, MonthlyIncomeList monthlyIncomeList, StockShareList stockShareList) {
         this.situationTypeEnum = situationTypeEnum;
         this.isMarried = situationTypeEnum != SituationTypeEnum.Single;
         this.monthlyIncomeList = monthlyIncomeList;
-        this.rsuVestList = rsuVestList;
+        this.stockShareList = stockShareList;
     }
 
     public BigDecimal getTotalGross() {
-        return getTotalMonthlyIncome().add(getTotalRSUsInEuro());
+        return getTotalMonthlyIncome()
+                .add(getTotalStockShareVestedInEuro());
     }
 
     public BigDecimal getTotalMonthlyIncome() {
         return monthlyIncomeList.getTotalGrossValue();
     }
 
-    public BigDecimal getTotalRSUsInEuro() {
-        return rsuVestList.getTotalInEuro();
+    public BigDecimal getTotalStockShareVestedInEuro() {
+        return stockShareList.getTotalStockShareVestedInEuro();
+    }
+
+    public BigDecimal getTotalProfitStockShareBuyAndSellInEuro() {
+        return stockShareList.getTotalProfitStockShareBuyAndSellInEuro();
     }
 
     public BigDecimal getTotalTSU() {
