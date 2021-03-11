@@ -32,15 +32,15 @@ Exemplo:
     1500;217.50;0.00;MAR  
     1500;217.50;0.00;APR  
     3000;657.00;0.00;MAY  
-	1500;217.50;0.00;JUN  
-	1500;217.50;0.00;JUL  
-	1500;217.50;0.00;AUG  
-	1500;217.50;0.00;SEPT  
-	1500;217.50;0.00;OCT  
-	1500;217.50;0.00;NOV  
+    1500;217.50;0.00;JUN  
+    1500;217.50;0.00;JUL  
+    1500;217.50;0.00;AUG  
+    1500;217.50;0.00;SEPT  
+    1500;217.50;0.00;OCT  
+    1500;217.50;0.00;NOV  
     3000;657.00;0.00;DEC  
 
-*  **rsusVested.csv**: arquivo CSV no formato a seguir:
+*  **acoes.csv**: arquivo CSV no formato a seguir:
  `quantidade;valor_unit_dolar;cotacao_para_euro;operacao(VEST|BUY|SELL|PREVIOUS)`
 
 Exemplo:
@@ -49,16 +49,22 @@ Exemplo:
     30;12.04;0.88;PREVIOUS  
     40;50;0.88;SELL
 
+
+* VEST: Significa que recebeste ações da empresa
+* BUY: Significa que compraste ações
+* SELL: Significa que vendeste ações
+* PREVIOUS: Significa que são ações de anos anteriores que estão em seu poder
+
 ## Correr o comando
 
-`java -jar ./target/irs-simulator-1.0.0-SNAPHOST [Single, Married1, Married2, RNH] full_path_to_mensal_CSV full_path_to_rsusVested.csv`  
+`java -jar ./target/irs-simulator-1.0.0-SNAPHOST [Single, Married1, Married2, RNH] full_path_to_mensal_CSV full_path_to_acoes.csv`  
 
 O primeiro parametro diz respeito se a simulação é para solteiro, casado em que apenas 1 trabalha, ou casado com os 2 a trabalhar, ou ainda RNH (Residente Não-Habitual).
 
 O regime de RNH aplica-se 20% de taxa de imposto sem deduções.
 
 No caso de casado com os 2 a trabalhar o CSV deve conter os dados de ambos os conjuges.
-Exemplo: `java -jar ./target/irs-simulator-1.0.0-SNAPHOST "Single" "c:\temp\mensal.csv" "c:\temp\rsusVested.csv"`
+Exemplo: `java -jar ./target/irs-simulator-1.0.0-SNAPHOST "Single" "c:\temp\mensal.csv" "c:\temp\acoes.csv"`
 
 Resultado esperado 
 
