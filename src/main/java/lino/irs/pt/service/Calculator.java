@@ -16,22 +16,29 @@ public class Calculator {
         BigDecimal referenceValue = null;
         BigDecimal amountSubjectToTax = null;
         BigDecimal totalIrs = null;
+        BigDecimal deduction = BigDecimal.ZERO;
+
+        /* To be 100% correct should separate TSUs from husband and wife
+            For us we are going to consider that TSUs are for both and deduct twice only when is Married2 (both works)
+            and use FIXED_DEDUCTION
+         */
+        boolean shouldUseFixedDeduction = request.getTotalTSU().compareTo(FIXED_DEDUCTION) <= 0;
+        if(shouldUseFixedDeduction) {
+            deduction = FIXED_DEDUCTION;
+            if (request.getSituationTypeEnum() == SituationTypeEnum.Married2) {
+                deduction = deduction.add(FIXED_DEDUCTION);
+            }
+        }
+        else {
+            deduction = request.getTotalTSU();
+        }
+        amountSubjectToTax = request.getTotalGross().subtract(deduction);
+
         if(request.getSituationTypeEnum() == SituationTypeEnum.RNH) {
-            amountSubjectToTax = request.getTotalGross();
             totalIrs = calculateIRSValue(amountSubjectToTax, true);
         }
         else {
-            amountSubjectToTax = request.getTotalGross().subtract(FIXED_DEDUCTION);
-            if(request.isMarried()) {
-                if(request.getSituationTypeEnum() == SituationTypeEnum.Married2) {
-                    amountSubjectToTax = amountSubjectToTax.subtract(FIXED_DEDUCTION);
-                }
-                referenceValue = amountSubjectToTax.divide(new BigDecimal(2));
-            }
-            else {
-                referenceValue = amountSubjectToTax;
-            }
-
+            referenceValue = request.isMarried() ? amountSubjectToTax.divide(new BigDecimal(2)) : amountSubjectToTax;
             totalIrs = calculateIRSValue(referenceValue, false);
             if(request.isMarried()) {
                 totalIrs = totalIrs.multiply(new BigDecimal(2));
@@ -42,7 +49,7 @@ public class Calculator {
         BigDecimal irsStockShares = calculateIRSValueForStockShares(profitStockShares);
         totalIrs = totalIrs.add(irsStockShares);
         BigDecimal irsToPay = totalIrs.subtract(request.getTotalRetention());
-        return new IRSSummary(amountSubjectToTax, profitStockShares, totalIrs, irsToPay);
+        return new IRSSummary(amountSubjectToTax, profitStockShares, totalIrs, irsToPay, deduction);
     }
 
     private static BigDecimal calculateIRSValueForStockShares(BigDecimal totalProfitStockShareBuyAndSellInEuro) {

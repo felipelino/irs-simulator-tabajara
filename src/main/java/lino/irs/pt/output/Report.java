@@ -17,26 +17,18 @@ public class Report {
     }
 
     public String toString(){
-        String reportAsString = "";
+        String reportAsString = "\nIRS Type....................:  "+ request.getSituationTypeEnum();
         if(request.getTotalTSU().compareTo(BigDecimal.ZERO) != 0) {
-            reportAsString = "\nTotal TSU retido na fonte...:  "+ request.getTotalTSU().setScale(2, BigDecimal.ROUND_HALF_UP);
-        }
-
-        BigDecimal deduction = Calculator.FIXED_DEDUCTION;
-        if(request.getSituationTypeEnum() == SituationTypeEnum.Married2) {
-            deduction = Calculator.FIXED_DEDUCTION.multiply(new BigDecimal(2));
-        }
-        else if(request.getSituationTypeEnum() == SituationTypeEnum.RNH) {
-            deduction = BigDecimal.ZERO;
+            reportAsString += "\nTotal TSU retido na fonte...:  "+ request.getTotalTSU().setScale(2, BigDecimal.ROUND_HALF_UP);
         }
 
         reportAsString +=
                 "\nValor bruto total recebido..:  "+ request.getTotalGross().setScale(2, BigDecimal.ROUND_HALF_UP) +
-                "\n\t = Total bruto salario....:  "+ request.getTotalMonthlyIncome().setScale(2, BigDecimal.ROUND_HALF_UP) +
-                "\n\t + Total RSUs Vested......:  "+ request.getTotalStockShareVestedInEuro().setScale(2, BigDecimal.ROUND_HALF_UP) +
-                "\nDeducao fixa................: -"+ deduction.setScale(2, BigDecimal.ROUND_HALF_UP) +
+                "\n\t = Total bruto salario..:  "+ request.getTotalMonthlyIncome().setScale(2, BigDecimal.ROUND_HALF_UP) +
+                "\n\t + Total RSUs Vested....:  "+ request.getTotalStockShareVestedInEuro().setScale(2, BigDecimal.ROUND_HALF_UP) +
+                "\nDeducao.....................: -"+ summary.getDeduction() +
                 "\n\nTotal sujeito a tributo.....:  "+summary.getAmountSubjectToTax() +
-                "\nValor total do lucro de acoes.:  "+summary.getProfitStockShares() +
+                "\nTotal do lucro de acoes.....:  "+summary.getProfitStockShares() +
                 "\nValor total de IRS..........:  "+summary.getTotalIrs() +
                 "\nValor de IRS retido na fonte: -"+ request.getTotalRetention().setScale(2, BigDecimal.ROUND_HALF_UP);
         if(summary.getIrsToPay().compareTo(BigDecimal.ZERO) >= 0) {

@@ -8,12 +8,14 @@ public class IRSSummary {
     private BigDecimal profitStockShares;
     private BigDecimal totalIrs;
     private BigDecimal irsToPay;
+    private BigDecimal deduction;
 
-    public IRSSummary(BigDecimal amountSubjectToTax, BigDecimal profitStockShares, BigDecimal totalIrs, BigDecimal irsToPay) {
+    public IRSSummary(BigDecimal amountSubjectToTax, BigDecimal profitStockShares, BigDecimal totalIrs, BigDecimal irsToPay, BigDecimal deduction) {
         this.amountSubjectToTax = amountSubjectToTax.setScale(2, BigDecimal.ROUND_HALF_UP);
         this.profitStockShares = profitStockShares.setScale(2, BigDecimal.ROUND_HALF_UP);
-        this.totalIrs = totalIrs.setScale(2, BigDecimal.ROUND_HALF_UP);;
-        this.irsToPay = irsToPay.setScale(2, BigDecimal.ROUND_HALF_UP);;
+        this.totalIrs = totalIrs.setScale(2, BigDecimal.ROUND_HALF_UP);
+        this.irsToPay = irsToPay.setScale(2, BigDecimal.ROUND_HALF_UP);
+        this.deduction = deduction.setScale(2, BigDecimal.ROUND_HALF_DOWN);
     }
 
     public BigDecimal getAmountSubjectToTax() {
@@ -32,4 +34,7 @@ public class IRSSummary {
         return profitStockShares;
     }
 
+    public BigDecimal getDeduction() {
+        return deduction;
+    }
 }
