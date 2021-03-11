@@ -55,19 +55,25 @@ Exemplo:
 
 O primeiro parametro diz respeito se a simulação é para solteiro, casado em que apenas 1 trabalha, ou casado com os 2 a trabalhar, ou ainda RNH (Residente Não-Habitual).
 
-O regime de RNH aplica-se 20% de taxa de imposto dem deduções fixas.
+O regime de RNH aplica-se 20% de taxa de imposto sem deduções.
 
 No caso de casado com os 2 a trabalhar o CSV deve conter os dados de ambos os conjuges.
 Exemplo: `java -jar ./target/irs-simulator-1.0.0-SNAPHOST "Single" "c:\temp\mensal.csv" "c:\temp\rsusVested.csv"`
 
 Resultado esperado 
 
+    IRS Type....................:  Single
     Valor bruto total recebido..:  23862.82
     	 = Total bruto salario....:  21000.00
     	 + Total RSUs Vested......:  2862.82
-    Deducao fixa................: -4104.00
+    Deducao.......................: -4104.00
     
     Total sujeito a tributo.....:  19758.82
+    Total do lucro de acoes.....:  0.00
     Valor total de IRS..........:  4436.48
     Valor de IRS retido na fonte: -3489.00
     IRS Total a pagar...........:  947.48
+
+# Referencia
+
+* https://www.montepio.org/ei/pessoal/impostos/como-calcular-o-irs/
