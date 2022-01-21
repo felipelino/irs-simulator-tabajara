@@ -64,7 +64,7 @@ O primeiro parametro diz respeito se a simulação é para solteiro, casado em q
 O regime de RNH aplica-se 20% de taxa de imposto sem deduções.
 
 No caso de casado com os 2 a trabalhar o CSV deve conter os dados de ambos os conjuges.
-Exemplo: `java -jar ./target/irs-simulator-1.0.0-SNAPHOST "Single" "c:\temp\mensal.csv" "c:\temp\acoes.csv"`
+Exemplo para solteiro: `java -jar ./target/irs-simulator-1.0.0-SNAPHOST "Single" "c:\temp\mensal.csv" "c:\temp\acoes.csv"`
 
 Resultado esperado 
 
