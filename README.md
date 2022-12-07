@@ -11,7 +11,7 @@ Dependendo da situação serve apenas para ter uma noção do quanto deve pagar 
 
 ## Pre-requisito
 
-* Java JDK 1.8 ou superior
+* Java JDK 17 ou superior
 * Maven 3
 
 ## Comando
