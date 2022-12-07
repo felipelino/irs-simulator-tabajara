@@ -22,8 +22,8 @@ public class CalculatorTest {
         IRSSummary summary = Calculator.calculateIRS(request);
         Assert.assertNotNull(summary);
         Assert.assertEquals("44992.00", summary.getAmountSubjectToTax() + "");
-        Assert.assertEquals("10715.78", summary.getTotalIrs() + "");
-        Assert.assertEquals("-204.22", summary.getIrsToPay() + "");
+        Assert.assertEquals("10203.01", summary.getTotalIrs() + "");
+        Assert.assertEquals("-716.99", summary.getIrsToPay() + "");
     }
 
     @Test
@@ -35,8 +35,8 @@ public class CalculatorTest {
         IRSSummary summary = Calculator.calculateIRS(request);
         Assert.assertNotNull(summary);
         Assert.assertEquals("44992.00", summary.getAmountSubjectToTax() + "");
-        Assert.assertEquals("10715.78", summary.getTotalIrs() + "");
-        Assert.assertEquals("-204.22", summary.getIrsToPay() + "");
+        Assert.assertEquals("10203.01", summary.getTotalIrs() + "");
+        Assert.assertEquals("-716.99", summary.getIrsToPay() + "");
     }
 
     @Test
@@ -49,7 +49,7 @@ public class CalculatorTest {
         IRSSummary summary = Calculator.calculateIRS(request);
         Assert.assertNotNull(summary);
         Assert.assertEquals("40888.00", summary.getAmountSubjectToTax() + "");
-        Assert.assertEquals("9279.38", summary.getTotalIrs() + "");
-        Assert.assertEquals("-1640.62", summary.getIrsToPay() + "");
+        Assert.assertEquals("8799.89", summary.getTotalIrs() + "");
+        Assert.assertEquals("-2120.11", summary.getIrsToPay() + "");
     }
 }
