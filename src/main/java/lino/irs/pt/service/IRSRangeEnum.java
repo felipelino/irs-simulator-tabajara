@@ -2,16 +2,20 @@ package lino.irs.pt.service;
 
 import java.math.BigDecimal;
 
+/**
+ * Updated with information from here: https://www.cgd.pt/Site/Saldo-Positivo/leis-e-impostos/Pages/diferenca-entre-escaloes-de-irs-e-tabelas-de-irs.aspx
+ * 30/07/2024
+ */
 public enum IRSRangeEnum {
 
-    RANGE1(new BigDecimal(7479), new BigDecimal("0.145"), new BigDecimal(7479)),
-    RANGE2(new BigDecimal(11284), new BigDecimal("0.21"), new BigDecimal(11284 - 7479)),
-    RANGE4(new BigDecimal(15992), new BigDecimal("0.265"), new BigDecimal(15992 - 11284)),
-    RANGE5(new BigDecimal(20700), new BigDecimal("0.285"), new BigDecimal(20700 - 15992)),
-    RANGE6(new BigDecimal(26355), new BigDecimal("0.35"), new BigDecimal(26355 - 20700)),
-    RANGE7(new BigDecimal(38632), new BigDecimal("0.37"), new BigDecimal(38632 - 26355)),
-    RANGE8(new BigDecimal(50483), new BigDecimal("0.435"), new BigDecimal(50483 - 38632)),
-    RANGE9(new BigDecimal(78834), new BigDecimal("0.45"), new BigDecimal(78834 - 50483)),
+    RANGE1(new BigDecimal(7703), new BigDecimal("0.13"), new BigDecimal(7703)),
+    RANGE2(new BigDecimal(11623), new BigDecimal("0.165"), new BigDecimal(11623 - 7703)),
+    RANGE4(new BigDecimal(16472), new BigDecimal("0.22"), new BigDecimal(16472 - 11623)),
+    RANGE5(new BigDecimal(21321), new BigDecimal("0.25"), new BigDecimal(21321 - 16472)),
+    RANGE6(new BigDecimal(27146), new BigDecimal("0.3275"), new BigDecimal(27146 - 21321)),
+    RANGE7(new BigDecimal(39791), new BigDecimal("0.355"), new BigDecimal(39791 - 27146)),
+    RANGE8(new BigDecimal(43000), new BigDecimal("0.435"), new BigDecimal(43000 - 39791)),
+    RANGE9(new BigDecimal(80000), new BigDecimal("0.45"), new BigDecimal(80000 - 43000)),
     RANGE10(null, new BigDecimal("0.48"), null);
 
 
