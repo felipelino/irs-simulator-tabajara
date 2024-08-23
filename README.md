@@ -40,7 +40,7 @@ Exemplo:
     1500;217.50;0.00;NOV  
     3000;657.00;0.00;DEC  
 
-*  **acoes.csv**: arquivo CSV no formato a seguir:
+*  **acoes.csv**: (Opcional) arquivo CSV no formato a seguir:
  `quantidade;valor_unit_dolar;cotacao_para_euro;operacao(VEST|BUY|SELL|PREVIOUS)`
 
 Exemplo:
@@ -57,7 +57,7 @@ Exemplo:
 
 ## Correr o comando
 
-`java -jar ./target/irs-simulator-1.0.0-SNAPHOST [Single, Married1, Married2, RNH] full_path_to_mensal_CSV full_path_to_acoes.csv`  
+`java -jar ./target/irs-simulator-1.0.0-SNAPHOST [Single, Married1, Married2, RNH] path_to_mensal_CSV path_to_acoes_opcional.csv`  
 
 O primeiro parametro diz respeito se a simulação é para solteiro, casado em que apenas 1 trabalha, ou casado com os 2 a trabalhar, ou ainda RNH (Residente Não-Habitual).
 
@@ -80,6 +80,10 @@ Resultado esperado
     Valor de IRS retido na fonte: -3489.00
     IRS Total a pagar...........:  947.48
 
+
+O ficheiro de acoes.csv é opcional e pode ser omitido ao correr o comando.
+
 # Referencia
 
 * https://www.montepio.org/ei/pessoal/impostos/como-calcular-o-irs/
+* https://www.cgd.pt/Site/Saldo-Positivo/leis-e-impostos/Pages/diferenca-entre-escaloes-de-irs-e-tabelas-de-irs.aspx
