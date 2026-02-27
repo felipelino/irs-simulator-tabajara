@@ -83,6 +83,10 @@ Resultado esperado
 
 O ficheiro de acoes.csv é opcional e pode ser omitido ao correr o comando.
 
+# Notas
+
+Esse aplicativo não suporta IRS Jovem
+
 # Referencia
 
 * https://www.montepio.org/ei/pessoal/impostos/como-calcular-o-irs/

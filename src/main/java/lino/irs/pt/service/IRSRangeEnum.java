@@ -8,14 +8,14 @@ import java.math.BigDecimal;
  */
 public enum IRSRangeEnum {
 
-    RANGE1(new BigDecimal(7703), new BigDecimal("0.13"), new BigDecimal(7703)),
-    RANGE2(new BigDecimal(11623), new BigDecimal("0.165"), new BigDecimal(11623 - 7703)),
-    RANGE4(new BigDecimal(16472), new BigDecimal("0.22"), new BigDecimal(16472 - 11623)),
-    RANGE5(new BigDecimal(21321), new BigDecimal("0.25"), new BigDecimal(21321 - 16472)),
-    RANGE6(new BigDecimal(27146), new BigDecimal("0.3275"), new BigDecimal(27146 - 21321)),
-    RANGE7(new BigDecimal(39791), new BigDecimal("0.355"), new BigDecimal(39791 - 27146)),
-    RANGE8(new BigDecimal(43000), new BigDecimal("0.435"), new BigDecimal(43000 - 39791)),
-    RANGE9(new BigDecimal(80000), new BigDecimal("0.45"), new BigDecimal(80000 - 43000)),
+    RANGE1(new BigDecimal(8059), new BigDecimal("0.125"), new BigDecimal(8059)),
+    RANGE2(new BigDecimal(12160), new BigDecimal("0.16"), new BigDecimal(12160 - 8059)),
+    RANGE4(new BigDecimal(17233), new BigDecimal("0.215"), new BigDecimal(17233 - 12160)),
+    RANGE5(new BigDecimal(22306), new BigDecimal("0.244"), new BigDecimal(22306 - 17233)),
+    RANGE6(new BigDecimal(28400), new BigDecimal("0.314"), new BigDecimal(28400 - 22306)),
+    RANGE7(new BigDecimal(41629), new BigDecimal("0.349"), new BigDecimal(41629 - 28400)),
+    RANGE8(new BigDecimal(44987), new BigDecimal("0.431"), new BigDecimal(44987 - 41629)),
+    RANGE9(new BigDecimal(83696), new BigDecimal("0.446"), new BigDecimal(83696 - 44987)),
     RANGE10(null, new BigDecimal("0.48"), null);
 
 
