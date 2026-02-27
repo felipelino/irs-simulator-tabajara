@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public class Calculator {
 
-    public static BigDecimal FIXED_DEDUCTION = new BigDecimal(4104);
+    public static BigDecimal FIXED_DEDUCTION = new BigDecimal(4462.15);
     public static BigDecimal FIXED_RNH_RATE = new BigDecimal(0.20);
 
     public static IRSSummary calculateIRS(IRSRequest request) {

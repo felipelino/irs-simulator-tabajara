@@ -21,9 +21,9 @@ public class CalculatorTest {
         IRSRequest request = new IRSRequest(SituationTypeEnum.Married2, monthlyIncomes, new StockShareList());
         IRSSummary summary = Calculator.calculateIRS(request);
         Assert.assertNotNull(summary);
-        Assert.assertEquals("44992.00", summary.getAmountSubjectToTax() + "");
-        Assert.assertEquals("8103.40", summary.getTotalIrs() + "");
-        Assert.assertEquals("-2816.60", summary.getIrsToPay() + "");
+        Assert.assertEquals("44275.70", summary.getAmountSubjectToTax() + "");
+        Assert.assertEquals("7902.03", summary.getTotalIrs() + "");
+        Assert.assertEquals("-3017.97", summary.getIrsToPay() + "");
     }
 
     @Test
@@ -34,9 +34,9 @@ public class CalculatorTest {
         IRSRequest request = new IRSRequest(SituationTypeEnum.Married2, monthlyIncomes, new StockShareList());
         IRSSummary summary = Calculator.calculateIRS(request);
         Assert.assertNotNull(summary);
-        Assert.assertEquals("44992.00", summary.getAmountSubjectToTax() + "");
-        Assert.assertEquals("8103.40", summary.getTotalIrs() + "");
-        Assert.assertEquals("-2816.60", summary.getIrsToPay() + "");
+        Assert.assertEquals("44275.70", summary.getAmountSubjectToTax() + "");
+        Assert.assertEquals("7902.03", summary.getTotalIrs() + "");
+        Assert.assertEquals("-3017.97", summary.getIrsToPay() + "");
     }
 
     @Test
@@ -48,8 +48,8 @@ public class CalculatorTest {
         IRSRequest request = new IRSRequest(SituationTypeEnum.Married2, monthlyIncomes, new StockShareList());
         IRSSummary summary = Calculator.calculateIRS(request);
         Assert.assertNotNull(summary);
-        Assert.assertEquals("40888.00", summary.getAmountSubjectToTax() + "");
-        Assert.assertEquals("7075.43", summary.getTotalIrs() + "");
-        Assert.assertEquals("-3844.57", summary.getIrsToPay() + "");
+        Assert.assertEquals("39813.55", summary.getAmountSubjectToTax() + "");
+        Assert.assertEquals("6813.26", summary.getTotalIrs() + "");
+        Assert.assertEquals("-4106.74", summary.getIrsToPay() + "");
     }
 }
